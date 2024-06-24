@@ -9,12 +9,12 @@ async function handleRequest(request) {
 
   if ((path === '/search' || path === "/") && queryParams.has('q')) {
     const query = queryParams.get('q');
-    return Response.redirect(`https://google.com?q=${query}`, 302);
+    return Response.redirect(`https://google.com/search?q=${query}`, 302);
   } else if (path === '/' && !queryParams.has('q')) {
     return Response.redirect('https://google.com', 302);
   } else if (path === '/github') {
     return Response.redirect('https://github.com/uhidontkno/plsgoogle.it', 302);
   } else {
-    return Response.redirect(`https://google.com/search?q=${path}`, 302);
+    return Response.redirect(`https://google.com/search?q=${path.slice(1)}`, 302);
   }
 }
