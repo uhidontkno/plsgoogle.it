@@ -7,7 +7,7 @@ async function handleRequest(request) {
   const path = url.pathname;
   const queryParams = url.searchParams;
 
-  if (path === '/search' && queryParams.has('q')) {
+  if ((path === '/search' || path === "/") && queryParams.has('q')) {
     const query = queryParams.get('q');
     return Response.redirect(`https://google.com?q=${query}`, 302);
   } else if (path === '/' && !queryParams.has('q')) {
@@ -15,6 +15,6 @@ async function handleRequest(request) {
   } else if (path === '/github') {
     return Response.redirect('https://github.com/uhidontkno/plsgoogle.it', 302);
   } else {
-    return Response.redirect(`https://google.com${path}`, 302);
+    return Response.redirect(`https://google.com/search?q=${path}`, 302);
   }
 }
